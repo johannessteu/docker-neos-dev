@@ -14,4 +14,6 @@ RUN apt-get -y install openssh-server && \
     sed -i s/PermitEmptyPasswords.*/PermitEmptyPasswords\ yes/ /etc/ssh/sshd_config && \
     ssh-keygen -A
 
+RUN mkdir /var/run/sshd
+
 ADD /container-files/etc /etc
