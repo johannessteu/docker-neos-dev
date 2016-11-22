@@ -8,3 +8,10 @@ RUN curl -L https://getcomposer.org/installer -o composer-setup.php && \
     rm  composer-setup.php && \
     mv composer.phar /usr/local/bin/composer && \
     chmod +rx /usr/local/bin/composer
+
+RUN apt-get -y install openssh-server && \
+    sed -i s/PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && \
+    sed -i s/PermitEmptyPasswords.*/PermitEmptyPasswords\ yes/ /etc/ssh/sshd_config && \
+    ssh-keygen -A
+
+ADD /container-files/etc /etc
